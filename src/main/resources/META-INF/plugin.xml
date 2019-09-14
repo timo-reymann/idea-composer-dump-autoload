@@ -17,19 +17,13 @@
      ... a file.
     ]]></description>
 
-    <change-notes><![CDATA[
-    <ul>
-        <li>0.0.1
-            <ol>
-                <li>Initial plugin</li>
-            </ol>
-        </li>
-    </ul>
-]]></change-notes>
+    <change-notes><![CDATA[Will be set by gradle build, so this is just a placeholder to satisfy the constraints]]></change-notes>
 
     <!-- Dependencies -->
     <idea-version since-build="192"/>
     <depends>com.jetbrains.php</depends>
+    <depends>com.intellij.modules.platform</depends>
+
     <project-components>
         <component>
             <implementation-class>
