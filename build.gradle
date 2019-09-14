@@ -13,8 +13,6 @@ apply plugin: 'idea'
 apply plugin: "java"
 
 def javaVersion = JavaVersion.VERSION_1_8;
-def details = versionDetails()
-def pluginVersion = details.lastTag
 
 java {
     sourceCompatibility = javaVersion
@@ -23,15 +21,16 @@ java {
 
 intellij {
     version = ideaVersion
-    pluginName = "Composer Dump-Autoload"
     type = ideaType
+    pluginName = "Composer Dump-Autoload"
     updateSinceUntilBuild = false
     downloadSources = true
     plugins = ["com.jetbrains.php:${phpPluginVersion}"]
 }
 
 patchPluginXml {
-    version = pluginVersion
+    version = versionDetails().lastTag
+    changeNotes = file("changelog.html").text
 }
 
 publishPlugin {
