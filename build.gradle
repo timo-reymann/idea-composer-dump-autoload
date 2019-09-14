@@ -1,0 +1,39 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+plugins {
+    id "org.jetbrains.intellij" version "0.4.9"
+    id 'com.palantir.git-version' version '0.12.2'
+}
+
+apply plugin: 'idea'
+apply plugin: "java"
+
+def javaVersion = JavaVersion.VERSION_1_8;
+def details = versionDetails()
+def pluginVersion = details.lastTag
+
+java {
+    sourceCompatibility = javaVersion
+    targetCompatibility = javaVersion
+}
+
+intellij {
+    version = ideaVersion
+    pluginName = "Composer Dump-Autoload"
+    type = ideaType
+    updateSinceUntilBuild = false
+    downloadSources = true
+    plugins = ["com.jetbrains.php:${phpPluginVersion}"]
+}
+
+patchPluginXml {
+    version = pluginVersion
+}
+
+publishPlugin {
+    token = System.getenv("JB_TOKEN")
+}

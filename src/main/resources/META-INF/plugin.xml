@@ -1,0 +1,40 @@
+<idea-plugin>
+    <id>com.github.timo_reymann.composer_dump_autoload_phpstorm_plugin</id>
+    <name>Composer Dump-Autoload</name>
+    <version>XXX</version>
+    <vendor email="mail@timo-reymann.de" url="https://timo-reymann.de/">Timo Reymann</vendor>
+<category>
+
+</category>
+    <description><![CDATA[
+     This is a simple plugin to trigger composer to create a new autoload file everytime you ...
+     <ul>
+        <li>create</li>
+        <li>delete</li>
+        <li>move</li>
+        <li>copy</li>
+     </ul>
+     ... a file.
+    ]]></description>
+
+    <change-notes><![CDATA[
+    <ul>
+        <li>0.0.1
+            <ol>
+                <li>Initial plugin</li>
+            </ol>
+        </li>
+    </ul>
+]]></change-notes>
+
+    <!-- Dependencies -->
+    <idea-version since-build="192"/>
+    <depends>com.jetbrains.php</depends>
+    <project-components>
+        <component>
+            <implementation-class>
+                com.github.timo_reymann.composer_dump_autoload_phpstorm_plugin.ComposerAutoloadDumperComponent
+            </implementation-class>
+        </component>
+    </project-components>
+</idea-plugin>
