@@ -60,6 +60,10 @@ public class ComposerCommandExecutor {
             // Wait synchronous
             processHandler.startNotify();
             processHandler.waitFor();
+
+            if (processHandler.getExitCode() != null && processHandler.getExitCode() != 0) {
+                throw new ExecutionException("Exited with code " + processHandler.getExitCode());
+            }
         } catch (ExecutionException e) {
             throw new ComposerCommandFailedException("Failed to execute composer command " + command, String.join("\n", stdout));
         }

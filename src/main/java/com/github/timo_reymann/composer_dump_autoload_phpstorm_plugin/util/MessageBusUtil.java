@@ -8,11 +8,19 @@ public class MessageBusUtil {
     /**
      * Group id for notification identification
      */
-    private static final String GROUP_ID = MessageBusUtil.class.getCanonicalName();
+    private static final String GROUP_ID = "Composer Dump-Autoload";
 
     public static Notification showMessage(NotificationType type, String title, String message) {
-        Notification notification = new Notification(GROUP_ID, title, message, type);
+        Notification notification = new Notification(GROUP_ID + " (" + capitalize(type.name()) + ")", title, message, type);
         Notifications.Bus.notify(notification);
         return notification;
+    }
+
+    public static String capitalize(String str) {
+        if (str == null || str.isEmpty()) {
+            return str;
+        }
+
+        return str.substring(0, 1).toUpperCase() + str.toLowerCase().substring(1);
     }
 }
