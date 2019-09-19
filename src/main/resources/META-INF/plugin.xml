@@ -20,7 +20,7 @@
     <change-notes><![CDATA[Will be set by gradle build, so this is just a placeholder to satisfy the constraints]]></change-notes>
 
     <!-- Dependencies -->
-    <idea-version since-build="193.2956.37"/>
+    <idea-version since-build="192" until-build="193.2956" />
     <depends>com.jetbrains.php</depends>
     <depends>com.intellij.modules.platform</depends>
 
