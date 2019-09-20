@@ -1,5 +1,7 @@
 composer-dump-autoload-phpstorm-plugin
 ===
+![GitHub Release](https://img.shields.io/github/v/tag/timo-reymann/composer-dump-autoload-phpstorm-plugin.svg)
+[![JetBrains Plugins](https://img.shields.io/badge/JetBrains-Plugins-orange)](https://plugins.jetbrains.com/plugin/13011-composer-dump-autoload)
 
 What the hack is that name?! - I know this name is some what really long, but this was my best idea, so ...
 
