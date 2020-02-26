@@ -1,67 +1,50 @@
 package com.github.timo_reymann.composer_dump_autoload_phpstorm_plugin.listener;
 
-import com.github.timo_reymann.composer_dump_autoload_phpstorm_plugin.task.ComposerAutoloadDumpRunner;
+import com.github.timo_reymann.composer_dump_autoload_phpstorm_plugin.command.ComposerCommandScheduler;
 import com.intellij.openapi.diagnostic.Logger;
-import com.intellij.openapi.project.Project;
-import com.intellij.openapi.vfs.VirtualFileCopyEvent;
-import com.intellij.openapi.vfs.VirtualFileEvent;
-import com.intellij.openapi.vfs.VirtualFileListener;
-import com.intellij.openapi.vfs.VirtualFileMoveEvent;
+import com.intellij.openapi.vfs.newvfs.BulkFileListener;
+import com.intellij.openapi.vfs.newvfs.events.VFileEvent;
 import com.jetbrains.php.lang.PhpFileType;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
+
 /**
- * Listener for lifecycle of php files
+ * Listener for virtual file system events
  */
-public class PhpFileListener implements VirtualFileListener {
-    private final Logger logger = Logger.getInstance(PhpFileListener.class);
-    private final ComposerAutoloadDumpRunner composerAutoloadDumpRunner;
-    private final String fileTypePhp;
+public class PhpFileListener implements BulkFileListener {
+    private static final String FILE_TYPE_PHP = PhpFileType.INSTANCE.getName();
+    private static final Logger logger = Logger.getInstance(PhpFileListener.class);
 
-    public PhpFileListener(Project project) {
-        this.composerAutoloadDumpRunner = new ComposerAutoloadDumpRunner(project);
-        this.fileTypePhp = PhpFileType.INSTANCE.getName();
+    private final ComposerCommandScheduler scheduler;
+
+    public PhpFileListener(ComposerCommandScheduler scheduler) {
+        this.scheduler = scheduler;
     }
 
-    private boolean isQualifiedForExecution(VirtualFileEvent event) {
+    @Override
+    public void after(@NotNull List<? extends VFileEvent> events) {
+        for (VFileEvent event : events) {
+            if(isQualified(event)) {
+                logger.info("Got qualification");
+                scheduler.setShouldRun(true);
+                break;
+            }
+        }
+    }
+
+    public boolean isQualified(VFileEvent event) {
+        // Exclude life cycle pseudo changes not relevant for autoloading
+        if(event.isFromSave() || event.isFromRefresh()  || event.getFile() == null) {
+            return false;
+        }
+
+        // Directory is interesting, as it may contain php files
         if (event.getFile().isDirectory()) {
-            return false;
+            return true;
         }
 
-        if (!event.getFile().getFileType().getName().equals(this.fileTypePhp)) {
-            return false;
-        }
-
-        return true;
-    }
-
-    private void handle(VirtualFileEvent event) {
-        if (!isQualifiedForExecution(event)) {
-            return;
-        }
-
-        logger.info("Handle file change event");
-
-        composerAutoloadDumpRunner.execute();
-    }
-
-    @Override
-    public void fileCreated(@NotNull VirtualFileEvent event) {
-        this.handle(event);
-    }
-
-    @Override
-    public void fileDeleted(@NotNull VirtualFileEvent event) {
-        this.handle(event);
-    }
-
-    @Override
-    public void fileMoved(@NotNull VirtualFileMoveEvent event) {
-        this.handle(event);
-    }
-
-    @Override
-    public void fileCopied(@NotNull VirtualFileCopyEvent event) {
-        this.handle(event);
+        // PHP files are the always interesting use case
+        return event.getFile().getFileType().getName().equals(FILE_TYPE_PHP);
     }
 }

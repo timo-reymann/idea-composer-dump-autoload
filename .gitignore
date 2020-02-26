@@ -11,4 +11,6 @@ gradle-app.setting
 .gradletasknamecache
 
 # Ignore the meta folder
-.idea/
+.idea/*.xml
+.idea/modules/*
+!.idea/runConfigurations/

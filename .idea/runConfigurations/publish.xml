@@ -1,0 +1,26 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="publish" type="GradleRunConfiguration" factoryName="Gradle">
+    <ExternalSystemSettings>
+      <option name="env">
+        <map>
+          <entry key="JB_TOKEN" value="perm:bWFpbC41Mg==.OTItMTMzMA==.cun7mo8dTedaB5iqQkiJAXje6edW96" />
+        </map>
+      </option>
+      <option name="executionName" />
+      <option name="externalProjectPath" value="/mnt/1D5DF93B4C9B1BF5/composer-dump-autoload-phpstorm-plugin" />
+      <option name="externalSystemIdString" value="GRADLE" />
+      <option name="scriptParameters" value="" />
+      <option name="taskDescriptions">
+        <list />
+      </option>
+      <option name="taskNames">
+        <list>
+          <option value="publishPlugin" />
+        </list>
+      </option>
+      <option name="vmOptions" value="" />
+    </ExternalSystemSettings>
+    <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+    <method v="2" />
+  </configuration>
+</component>

@@ -1,5 +1,6 @@
 package com.github.timo_reymann.composer_dump_autoload_phpstorm_plugin;
 
+import com.github.timo_reymann.composer_dump_autoload_phpstorm_plugin.command.ComposerCommandScheduler;
 import com.github.timo_reymann.composer_dump_autoload_phpstorm_plugin.listener.PhpFileListener;
 import com.github.timo_reymann.composer_dump_autoload_phpstorm_plugin.util.MessageBusUtil;
 import com.intellij.notification.NotificationType;
@@ -13,8 +14,9 @@ import com.jetbrains.php.composer.ComposerDataService;
  * Plugin entrypoint component
  */
 public class ComposerAutoloadDumperComponent implements ProjectComponent {
+    private static final Logger logger = Logger.getInstance(ComposerAutoloadDumperComponent.class);
+
     private final Project project;
-    private final Logger logger = Logger.getInstance(ComposerAutoloadDumperComponent.class);
 
     public ComposerAutoloadDumperComponent(Project project) {
         this.project = project;
@@ -23,6 +25,7 @@ public class ComposerAutoloadDumperComponent implements ProjectComponent {
     @Override
     public void projectOpened() {
         ComposerDataService composerDataService = ComposerDataService.getInstance(project);
+        ComposerCommandScheduler scheduler = new ComposerCommandScheduler(project);
 
         if (!composerDataService.isConfigWellConfigured()) {
             logger.warn("Disable for project");
@@ -31,6 +34,7 @@ public class ComposerAutoloadDumperComponent implements ProjectComponent {
         }
 
         logger.info("Register file listener for current project");
-        VirtualFileManager.getInstance().addVirtualFileListener(new PhpFileListener(project));
+        project.getMessageBus().connect().subscribe(VirtualFileManager.VFS_CHANGES, new PhpFileListener(scheduler));
+        scheduler.schedule();
     }
 }
