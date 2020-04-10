@@ -33,7 +33,7 @@ intellij {
     updateSinceUntilBuild = false
     downloadSources = true
     plugins = ["com.jetbrains.php:${phpPluginVersion}"]
-}
+}M
 
 patchPluginXml {
     version = pluginVersion
