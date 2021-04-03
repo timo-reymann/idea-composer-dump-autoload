@@ -20,15 +20,15 @@
     <change-notes><![CDATA[Will be set by gradle build, so this is just a placeholder to satisfy the constraints]]></change-notes>
 
     <!-- Dependencies -->
-    <idea-version since-build="192.4787.16" />
+    <idea-version since-build="203.3645.34" />
     <depends>com.jetbrains.php</depends>
     <depends>com.intellij.modules.platform</depends>
 
-    <project-components>
-        <component>
-            <implementation-class>
-                com.github.timo_reymann.composer_dump_autoload_phpstorm_plugin.ComposerAutoloadDumperComponent
-            </implementation-class>
-        </component>
-    </project-components>
+    <extensions defaultExtensionNs="com.intellij">
+        <postStartupActivity implementation="com.github.timo_reymann.composer_dump_autoload_phpstorm_plugin.ComposerAutoloadDumperComponent" />
+
+        <notificationGroup displayType="NONE"
+                           id="Composer Dump-Autoload"/>
+    </extensions>
+
 </idea-plugin>

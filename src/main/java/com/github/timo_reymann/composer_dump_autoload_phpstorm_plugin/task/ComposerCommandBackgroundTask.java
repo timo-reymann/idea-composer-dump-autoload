@@ -27,9 +27,9 @@ public class ComposerCommandBackgroundTask extends Task.Backgroundable {
         indicator.setText(this.text);
         try {
             List<String> stdout = executor.run();
-            MessageBusUtil.showMessage(NotificationType.INFORMATION, "Autoload dumped successfully", String.join("\n", stdout)).hideBalloon();
+            MessageBusUtil.showMessage(getProject(), NotificationType.INFORMATION, "Autoload dumped successfully", String.join("\n", stdout));
         } catch (ComposerCommandFailedException e) {
-            MessageBusUtil.showMessage(NotificationType.ERROR, String.format("Error executing '%s'", text), String.format("<html>%s<br /><pre>%s</pre></html>", e.getMessage(), e.getCommandOutput()));
+            MessageBusUtil.showMessage(getProject(), NotificationType.ERROR, String.format("Error executing '%s'", text), String.format("<html>%s<br /><pre>%s</pre></html>", e.getMessage(), e.getCommandOutput()));
             indicator.cancel();
         }
     }

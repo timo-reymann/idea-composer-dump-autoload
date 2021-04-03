@@ -41,7 +41,7 @@ public class ComposerAutoloadDumpRunner {
         } else if (execution instanceof PharComposerExecution) {
             executor = new ComposerCommandExecutor("php", workingDirectory, ((PharComposerExecution) execution).getPharPath() + " " + DUMP_AUTOLOAD);
         } else {
-            MessageBusUtil.showMessage(NotificationType.ERROR, "Unsupported composer type", "Composer runtime type is not supported!");
+            MessageBusUtil.showMessage(project, NotificationType.ERROR, "Unsupported composer type", "Composer runtime type is not supported!");
             return;
         }
 

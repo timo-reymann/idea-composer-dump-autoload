@@ -7,29 +7,26 @@ import com.intellij.notification.NotificationType;
 import com.intellij.openapi.components.ProjectComponent;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.startup.StartupActivity;
+import com.intellij.openapi.vcs.impl.ModuleVcsDetector;
 import com.intellij.openapi.vfs.VirtualFileManager;
 import com.jetbrains.php.composer.ComposerDataService;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Plugin entrypoint component
  */
-public class ComposerAutoloadDumperComponent implements ProjectComponent {
+public class ComposerAutoloadDumperComponent implements StartupActivity {
     private static final Logger logger = Logger.getInstance(ComposerAutoloadDumperComponent.class);
 
-    private final Project project;
-
-    public ComposerAutoloadDumperComponent(Project project) {
-        this.project = project;
-    }
-
     @Override
-    public void projectOpened() {
+    public void runActivity(@NotNull Project project) {
         ComposerDataService composerDataService = ComposerDataService.getInstance(project);
         ComposerCommandScheduler scheduler = new ComposerCommandScheduler(project);
 
         if (!composerDataService.isConfigWellConfigured()) {
             logger.warn("Disable for project");
-            MessageBusUtil.showMessage(NotificationType.WARNING, "Autodump for composer has been disabled", "It seems you are working on a non-composer project, or your config is invalid");
+            MessageBusUtil.showMessage(project, NotificationType.WARNING, "Autodump for composer has been disabled", "It seems you are working on a non-composer project, or your config is invalid");
             return;
         }
 
