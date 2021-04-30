@@ -1,4 +1,4 @@
-<idea-plugin url="https://github.com/timo-reymann/composer-dump-autoload-phpstorm-plugin">
+<idea-plugin url="https://github.com/timo-reymann/idea-composer-dump-autoload">
     <id>com.github.timo_reymann.composer_dump_autoload_phpstorm_plugin</id>
     <name>Composer Dump-Autoload</name>
     <version>XXX</version>
