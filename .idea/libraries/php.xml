@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="php">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/build/idea-sandbox/plugins/php/lib/php.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
