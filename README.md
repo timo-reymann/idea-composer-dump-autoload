@@ -1,8 +1,10 @@
 composer-dump-autoload-phpstorm-plugin
 ===
-[![GitHub Release](https://img.shields.io/github/v/tag/timo-reymann/composer-dump-autoload-phpstorm-plugin.svg?label=version)](https://github.com/timo-reymann/composer-dump-autoload-phpstorm-plugin/releases)
-[![JetBrains Plugins](https://img.shields.io/badge/JetBrains-Plugins-orange)](https://plugins.jetbrains.com/plugin/13011-composer-dump-autoload)
 [![CircleCI](https://circleci.com/gh/timo-reymann/idea-composer-dump-autoload.svg?style=shield)](https://app.circleci.com/pipelines/github/timo-reymann/idea-composer-dump-autoload)
+[![GitHub Release](https://img.shields.io/github/v/tag/timo-reymann/composer-dump-autoload-phpstorm-plugin.svg?label=version)](https://github.com/timo-reymann/composer-dump-autoload-phpstorm-plugin/releases)
+[![Version](https://img.shields.io/jetbrains/plugin/v/13011-composer-dump-autoload)](https://plugins.jetbrains.com/plugin/13011-composer-dump-autoload)
+[![Downloads](https://img.shields.io/jetbrains/plugin/d/13011-composer-dump-autoload)](https://plugins.jetbrains.com/plugin/13011-composer-dump-autoload)
+[![Rating](https://img.shields.io/jetbrains/plugin/r/rating/13011-composer-dump-autoload)](https://plugins.jetbrains.com/plugin/13011-composer-dump-autoload/reviews)
 
 What the hack is that name?! - I know this name is some what really long, but this was my best idea, so ...
 
