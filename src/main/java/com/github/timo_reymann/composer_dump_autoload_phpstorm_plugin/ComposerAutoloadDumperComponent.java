@@ -4,11 +4,9 @@ import com.github.timo_reymann.composer_dump_autoload_phpstorm_plugin.command.Co
 import com.github.timo_reymann.composer_dump_autoload_phpstorm_plugin.listener.PhpFileListener;
 import com.github.timo_reymann.composer_dump_autoload_phpstorm_plugin.util.MessageBusUtil;
 import com.intellij.notification.NotificationType;
-import com.intellij.openapi.components.ProjectComponent;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.startup.StartupActivity;
-import com.intellij.openapi.vcs.impl.ModuleVcsDetector;
 import com.intellij.openapi.vfs.VirtualFileManager;
 import com.jetbrains.php.composer.ComposerDataService;
 import org.jetbrains.annotations.NotNull;

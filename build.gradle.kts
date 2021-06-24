@@ -1,0 +1,44 @@
+fun getVersionDetails(): com.palantir.gradle.gitversion.VersionDetails =
+    (extra["versionDetails"] as groovy.lang.Closure<*>)() as com.palantir.gradle.gitversion.VersionDetails
+
+val gitInfo = getVersionDetails()
+val changelog = File(projectDir, "changelog.html").readText()
+
+version = gitInfo.version
+
+repositories {
+    mavenCentral()
+}
+
+plugins {
+    id("java")
+    id("org.jetbrains.intellij") version "1.0"
+    id("com.palantir.git-version") version "0.12.3"
+}
+
+intellij {
+    version.set(properties["idea-version"] as String)
+    pluginName.set("Composer Dump-Autoload")
+    updateSinceUntilBuild.set(false)
+    downloadSources.set(true)
+    plugins.set(
+        listOf("com.jetbrains.php:${properties["php-version"] as String}")
+    )
+}
+
+tasks {
+    compileJava {
+        sourceCompatibility = JavaVersion.VERSION_1_8.toString()
+        targetCompatibility = JavaVersion.VERSION_1_8.toString()
+    }
+
+    patchPluginXml {
+        setVersion(version)
+        changeNotes.set(changelog)
+    }
+
+    publishPlugin {
+        dependsOn("patchPluginXml")
+        token.set(System.getenv("JB_TOKEN"))
+    }
+}
