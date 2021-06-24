@@ -33,7 +33,7 @@ tasks {
     }
 
     patchPluginXml {
-        setVersion(version)
+        setVersion(project.version)
         changeNotes.set(changelog)
     }
 
