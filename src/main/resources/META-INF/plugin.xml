@@ -25,7 +25,7 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <postStartupActivity implementation="com.github.timo_reymann.composer_dump_autoload_phpstorm_plugin.ComposerAutoloadDumperComponent" />
+        <postStartupActivity implementation="de.timo_reymann.composer_dump_autoload_phpstorm_plugin.ComposerAutoloadDumperComponent" />
 
         <notificationGroup displayType="NONE"
                            id="Composer Dump-Autoload"/>
