@@ -11,7 +11,7 @@ repositories {
 }
 
 plugins {
-    kotlin("jvm") version "1.6.0"
+    kotlin("jvm") version "1.6.10"
     id("java")
     id("org.jetbrains.intellij") version "1.3.0"
     id("com.palantir.git-version") version "0.12.3"
