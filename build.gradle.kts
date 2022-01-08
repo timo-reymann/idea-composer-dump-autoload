@@ -2,7 +2,6 @@ fun getVersionDetails(): com.palantir.gradle.gitversion.VersionDetails =
     (extra["versionDetails"] as groovy.lang.Closure<*>)() as com.palantir.gradle.gitversion.VersionDetails
 
 val gitInfo = getVersionDetails()
-val changelog = File(projectDir, "changelog.html").readText()
 
 version = gitInfo.version
 
@@ -43,7 +42,6 @@ tasks {
 
     patchPluginXml {
         setVersion(project.version)
-        changeNotes.set(changelog)
     }
 
     publishPlugin {
