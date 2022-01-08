@@ -63,6 +63,6 @@ class ComposerCommandExecutor(
     }
 
     companion object {
-        const val DUMP_AUTOLOAD = "dump-autoload --optimize"
+        const val DUMP_AUTOLOAD = "dump-autoload"
     }
 }

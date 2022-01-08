@@ -8,10 +8,10 @@ import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicBoolean
 
 /**
- * Helper to schedule background task, that only executes the composer command if an change occured that
+ * Helper to schedule background task, that only executes the composer command if a change occurred that
  * potentially needs to rebuild the composer autoload
  */
-class ComposerCommandScheduler(project: Project?) : Runnable {
+class ComposerCommandScheduler(project: Project) : Runnable {
     private val logger = Logger.getInstance(
         ComposerCommandScheduler::class.java
     )

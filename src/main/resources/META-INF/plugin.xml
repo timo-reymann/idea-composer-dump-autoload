@@ -3,25 +3,102 @@
     <name>Composer Dump-Autoload</name>
     <version>XXX</version>
     <vendor email="jetbrains-plugins@timo-reymann.de" url="https://timo-reymann.de/">Timo Reymann</vendor>
-<category>
+    <category>
 
-</category>
+    </category>
     <description><![CDATA[
      This is a simple plugin to trigger composer to create a new autoload file everytime you modify a PHP file in your project.
     ]]></description>
 
-    <change-notes><![CDATA[Will be set by gradle build, so this is just a placeholder to satisfy the constraints]]></change-notes>
+    <change-notes><![CDATA[
+        <ul>
+            <li>2.1.0
+                <ul>
+                    <li>Make dump-autoload arguments configurable (<a
+                            href="https://github.com/timo-reymann/idea-composer-dump-autoload/issues/14">#14</a>)
+                    </li>
+                </ul>
+            </li>
+            <li>2.0.0
+                <ul>
+                    <li>Rewritten plugin in kotlin</li>
+                </ul>
+            </li>
+            <li>1.2.2
+                <ul>
+                    <li>Migrate to new plugin infrastructure</li>
+                </ul>
+            </li>
+            <li>1.2.1
+                <ul>
+                    <li>Remove "end of support" for compability range</li>
+                </ul>
+            </li>
+            <li>1.2.0
+                <ul>
+                    <li>Add support for IDEA 2020.1</li>
+                </ul>
+            </li>
+            <li>1.1.1
+                <ul>
+                    <li>Improved performance for batch operations by dumping autoload every 500ms if required instead of
+                        on demand
+                    </li>
+                </ul>
+            </li>
+            <li>1.0.3
+                <ul>
+                    <li>Set compatibility bounds</li>
+                </ul>
+            </li>
+            <li>1.0.2
+                <ul>
+                    <li>Increase min intellij version</li>
+                </ul>
+            </li>
+            <li>1.0.1
+                <ul>
+                    <li>Fix plugin dependency for PHPStorm, preventing it from getting loaded correctly</li>
+                </ul>
+            </li>
+            <li>1.0.0
+                <ul>
+                    <li>
+                        Seperated different error levels into separate notification groups, allowing to hide the info
+                        balloon
+                        for the info messages while keeping error messages as balloons that pop up if something goes
+                        wrong
+                    </li>
+                </ul>
+            </li>
+            <li>0.0.1
+                <ul>
+                    <li>
+                        Initialize plugin
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        ]]></change-notes>
 
     <!-- Dependencies -->
-    <idea-version since-build="203.3645.34" />
+    <idea-version since-build="203.3645.34"/>
     <depends>com.jetbrains.php</depends>
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <postStartupActivity implementation="de.timo_reymann.composer_dump_autoload_phpstorm_plugin.ComposerAutoloadDumperComponent" />
+        <postStartupActivity
+                implementation="de.timo_reymann.composer_dump_autoload_phpstorm_plugin.ComposerAutoloadDumperComponent"/>
 
         <notificationGroup displayType="NONE"
                            id="Composer Dump-Autoload"/>
+        <projectService
+                serviceImplementation="de.timo_reymann.composer_dump_autoload_phpstorm_plugin.settings.ComposerDumpAutoloadSettings"/>
+        <projectConfigurable
+                id="de.timo_reymann.composer_dump_autoload_phpstorm_plugin.settings.ComposerDumpAutoloadSettings"
+                parentId="reference.webide.settings.project.settings.php"
+                groupWeight="35"
+                instance="de.timo_reymann.composer_dump_autoload_phpstorm_plugin.settings.ComposerDumpAutoloadSettingsConfigurable"/>
     </extensions>
 
 </idea-plugin>
