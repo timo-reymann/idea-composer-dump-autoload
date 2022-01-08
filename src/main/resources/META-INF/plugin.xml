@@ -3,25 +3,34 @@
     <name>Composer Dump-Autoload</name>
     <version>XXX</version>
     <vendor email="jetbrains-plugins@timo-reymann.de" url="https://timo-reymann.de/">Timo Reymann</vendor>
-<category>
+    <category>
 
-</category>
+    </category>
     <description><![CDATA[
      This is a simple plugin to trigger composer to create a new autoload file everytime you modify a PHP file in your project.
     ]]></description>
 
-    <change-notes><![CDATA[Will be set by gradle build, so this is just a placeholder to satisfy the constraints]]></change-notes>
+    <change-notes><![CDATA[
+        Will be set by gradle build, so this is just a placeholder to satisfy the constraints
+        ]]></change-notes>
 
     <!-- Dependencies -->
-    <idea-version since-build="203.3645.34" />
+    <idea-version since-build="203.3645.34"/>
     <depends>com.jetbrains.php</depends>
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <postStartupActivity implementation="de.timo_reymann.composer_dump_autoload_phpstorm_plugin.ComposerAutoloadDumperComponent" />
+        <postStartupActivity
+                implementation="de.timo_reymann.composer_dump_autoload_phpstorm_plugin.ComposerAutoloadDumperComponent"/>
 
         <notificationGroup displayType="NONE"
                            id="Composer Dump-Autoload"/>
+        <projectService
+                serviceImplementation="de.timo_reymann.composer_dump_autoload_phpstorm_plugin.settings.ComposerDumpAutoloadSettings"/>
+        <projectConfigurable id="de.timo_reymann.composer_dump_autoload_phpstorm_plugin.settings.ComposerDumpAutoloadSettings"
+                             parentId="reference.webide.settings.project.settings.php"
+                             groupWeight="35"
+                             instance="de.timo_reymann.composer_dump_autoload_phpstorm_plugin.settings.ComposerDumpAutoloadSettingsConfigurable"/>
     </extensions>
 
 </idea-plugin>
