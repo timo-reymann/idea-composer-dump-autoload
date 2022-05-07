@@ -7,7 +7,13 @@ composer-dump-autoload-phpstorm-plugin
 [![Rating](https://img.shields.io/jetbrains/plugin/r/rating/13011-composer-dump-autoload)](https://plugins.jetbrains.com/plugin/13011-composer-dump-autoload/reviews)
 [![Dependabot](https://badgen.net/badge/Dependabot/enabled/green?icon=dependabot)](https://dependabot.com/)
 
-What the hack is that name?! - I know this name is some what really long, but this was my best idea, so ...
+<p align="center">
+	<img width="300" src="./src/main/resources/META-INF/pluginIcon.svg">
+</p>
+
+<p align="center">
+	What the hack is that name?! - I know this name is some what really long, but this was my best idea, so ...
+</p>
 
 ## Whats in the box?
 It is simple as its title ;) 
