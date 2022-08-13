@@ -7,7 +7,8 @@
 
     </category>
     <description><![CDATA[
-     This is a simple plugin to trigger composer to create a new autoload file everytime you modify a PHP file in your project.
+     This is a simple plugin to trigger composer to create a new autoload file when you move, create or delete PHP files in your project.
+     Also includes debounced execution etc. to keep things running smoothly.
     ]]></description>
 
     <change-notes><![CDATA[
